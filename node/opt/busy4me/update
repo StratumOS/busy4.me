@@ -1,0 +1,47 @@
+#!/bin/bash
+# Update all files
+PROJECT="busy4me"
+#export PATH=$PATH:/opt/$PROJECT
+
+	mkdir /opt/$PROJECT
+	cd /opt/$PROJECT
+	rm -rf /opt/$PROJECT/*
+
+	echo "wget -q --no-check-certificate https://busy4.me/opt/busy4me/*"
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/update
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/config
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/frame01
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/windows-init
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/windows-normal
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/chrome-init
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/menu-init
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/mouse-01
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/xterm-transparent
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/zenity
+	wget -q --no-check-certificate https://busy4.me/var/www/html/index.html -O /var/www/html/index.html
+	mkdir /opt/$PROJECT/fb
+	cd /opt/$PROJECT/fb
+	rm -rf /opt/$PROJECT/fb/*
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-walking-around
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-open
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-init
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-config
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-login
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-login02
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-scroll
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-like-random-fanpages
+	wget -q --no-check-certificate https://busy4.me/opt/busy4me/fb/fb-write-my-groups
+	chmod +x /opt/busy4me/*
+	chmod +x /opt/busy4me/fb/*
+
+	echo "All files updated .............................................."
+	echo "/opt/$PROJECT"
+	ls -la /opt/$PROJECT
+	echo "/opt/$PROJECT"/fb
+	ls -la /opt/$PROJECT/fb
+	echo "/var/www/html"
+	ls -la /var/www/html
+
+	chmod 777 /var/log/busy4me.log
+
+echo "OK"

@@ -1,0 +1,108 @@
+#!/bin/bash
+
+SCRIPT=fb-scroll
+LOGFILE=/var/log/busy4me.log
+
+xdotool mousemove 0 0
+
+logline() {
+    while IFS= read -r line; do
+        echo "$(date +%F' '%T) $USER $SCRIPT - $line" | tee -a $LOGFILE 
+    done
+}
+
+kds=50 # Key Delay Short [miliseconds]
+kd=250 # Key Delay [miliseconds]
+kdl=500 # Key Delay Long [miliseconds]
+tos=1 # Time Out Short zenity messages time out [seconds] 
+to=2 # Time Out zenity messages time out [seconds] 
+tol=5 # Time Out Long zenity messages time out [seconds] 
+
+SPOT01="facebook" # spot 01
+SPOT01url="http://facebook.com" # url 01
+
+xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+transset -a 1
+
+memory_usage=$(free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }')
+echo "$memory_usage"
+memory=$(free -m | awk 'NR==2{printf "%s\n", $3,$2,$3*100/$2 }')
+percent_memory=$(free -m | awk 'NR==2{printf "%.2f%\n", $3,$2,$3*100/$2 }')
+echo "used percent of memory: $percent_memory"
+
+limit=1024 # max memory usage [MB]
+mem=$(free -m | awk 'NR==2{printf "%s\n", $3,$2,$3*100/$2 }')
+echo "Mem = $mem MB, Scroll down start..." | logline
+
+#(sleep 2 && wmctrl -F -a "I am on top" -b add,above) & (zenity --info --title="I am on top" --text="How to help Zenity to get focus and be always on top" --timeout 2)
+
+zenity --info --title="Scroll down, memory usage" --text="Scroll down, Actual memory usage [MB]: $memory" \
+--width 300 --height 100 --timeout 1
+
+# free memory....
+#free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+
+iter=5
+
+for (( i=1; i<$iter; i++ )); do
+    echo "# Progress bar, step $i"
+    echo "$(( (i * 100) /$iter ))"
+    sleep 0.2
+    shift 1
+done | zenity --progress --title="Load progress..." --percentage=0 --no-cancel --auto-close
+#done | zenity --progress --title="Load progress..." --percentage=0 --pulsate --no-cancel --auto-close
+
+full=100
+difference="$(( $limit - $memory ))"
+
+#factor="$(( ($full) /$difference ))"
+#factor=$(($full / $limit))
+
+#factor=$("scale=2 ; $full / $limit" | bc)
+
+factor=$(bc <<< "scale = 4; (($full / $difference))")
+x='4'
+y='2'
+
+
+echo "Test bc: "
+m=34
+bc <<< "scale = 10; 1 - (($m - 20) / 34)"
+
+echo "====================================================="
+echo "Full scale [%]: $full"
+echo "Actual memory usage [MB]: $memory"
+echo "Limit memory [MB]: $limit"
+echo "Difference: $difference"
+echo "Factor: $factor"
+
+# scroll page down
+scroll () {
+while [ $mem -lt $limit ]
+do
+	xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+	transset -a 0.7
+	xdotool key --delay $kds Down Down Down Down Down Down Down Down Down Down
+	xdotool key --delay $kds Down Down Down Down Down Down Down Down Down Down
+	mem=$(free -m | awk 'NR==2{printf "%s\n", $3,$2,$3*100/$2 }')
+	echo "Difference: $difference"
+	echo "Factor: $factor"
+	echo "# Do not watch brain-breaking content... \nThis is just a scroll page down and memory usage test.\n \
+Available system memory: 2048 MB\n\
+Limit: $limit MB\n\
+\n\
+$mem MB"
+	#echo "$(( ($mem - $memory) *$factor ))"
+	usage=$(bc <<< "scale = 0; (( ($mem - $memory) * $factor))")
+	echo "$usage"
+done | zenity --progress --title="Scrolling in progress..." --text="Testing, testing..." --percentage=0 --no-cancel --auto-close \
+		--width 400 --height 110
+}
+(sleep 2 && wmctrl -F -a "Scrolling in progress..." -b add,above) & scroll
+
+xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+transset -a 1
+
+echo "Scroll stop."
+memory=$(free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }')
+echo "$memory"

@@ -1,0 +1,10 @@
+#!/bin/bash
+#config file
+BR01="google-chrome" # Browser 01
+PROC01="chrome" # process 01
+SPOT01="facebook" # spot 01
+SPOT01url="http://facebook.com" # url 01
+SPOT02="xterm"
+SPOT03="terminal"
+BR01x=825 #BROWSER_01 size x
+BR01y=1280 #BROWSER_01 size y

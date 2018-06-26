@@ -1,0 +1,157 @@
+#!/bin/sh
+SCRIPT=fb-login
+LOGFILE=/var/log/busy4me.log
+
+logline() {
+    while IFS= read -r line; do
+        echo "$(date +%F' '%T) $USER $SCRIPT - $line" | tee -a $LOGFILE 
+    done
+}
+
+kd=200 # key delay [miliseconds]
+to=2 # zenity messages time out [seconds] 
+login=darek@netol.pl
+password=Tjmhdf8321!
+login_url=http://m.facebook.com
+
+shake() {
+xdotool key --delay 200 Page_Down End Page_Up Home
+}
+
+echo "is it mobile login page?"
+
+SPOT01="facebook" # spot 01
+SPOT01url="http://facebook.com" # url 01
+#xdotool search --sync --onlyvisible --name "$SPOT01" windowunmap windowmap | logline
+xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+echo "...select and copy"
+xdotool key --delay 200 Ctrl+a Ctrl+c | logline
+echo "...all selected"
+echo "...unselect"
+xdotool key --delay 200 Ctrl+Shift+a | logline
+clip=$( xclip -out -selection clipboard )
+echo "...zenity"
+zenity --info --title="clipboard" --text="$clip" --timeout $to
+echo "...END"
+
+echo "is it english?"
+echo "is it logged?"
+mark01='Create an account' #special sign from the MAIN LOGIN site
+mark02='Create New Account' #special sign from the MAIN LOGIN site
+case "$clip" in 
+    *$mark01*) 
+	echo "Main login page...Not logged"
+	zenity --info --title="clipboard" --text="Mine login page...not logged..." --timeout $to
+  ;;
+    *$mark02*) 
+	echo "Mobile login page...Not logged"
+	zenity --info --title="clipboard" --text="Mobile login page...not logged..." --timeout $to
+  ;;
+    *)
+	zenity --question --title="Status" --text="What is the page status?" --timeout $to
+  ;;
+esac
+
+
+: ' 
+if [ $clip ?? $mark1 ]; then
+	echo "...Not logged"
+	zenity --info --title="clipboard" --text="....not logged"
+fi
+
+ your comments here
+'
+
+(
+echo "10" ; sleep 0.3
+echo "# Check if logged..." ; sleep 0.3
+echo "50" ; sleep 0.3
+echo "# Check page..." ; sleep 0.3
+echo "90" ; sleep 0.3
+) |
+zenity --progress \
+  --title="Check in progress..." \
+  --text="Check page..." \
+  --percentage=0 \
+  --timeout 2
+
+if [ "$?" = -1 ] ; then
+        zenity --error \
+          --text="Something wrong, check page...."
+fi
+# zenity form...
+: 'zenity --forms --title="Add fb account..." \
+	--text="Enter user..." \
+	--separator="," \
+	--add-entry="Email" \
+	--add-entry="Password" >> /home/busyman/addr.csv
+'
+
+# open mobile page...
+xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+xdotool key --delay 200 Ctrl+l | logline
+xdotool type $login_url
+xdotool key --delay 200 Return
+
+mark02='Forgotten'
+mark03='Centre'
+# check if mobile facebook page is open
+page_probe () {
+for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+	do
+	echo "page_probe..."
+	zenity --info --title="page_probe" --text="page_probe..." --timeout 1
+		xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate
+		xdotool key --delay 200 Ctrl+a Ctrl+c Ctrl+Shift+a
+		clip=$( xclip -out -selection clipboard )
+		case "$clip" in
+		*$mark02*)
+			echo "Login page OK..."
+			zenity --info --title="page_probe" --text="Login page OK I see text \"$mark2\" go to login..." --timeout $to
+			break
+		;;
+		*)
+			echo "probe again..."
+			zenity --info --title="page_probe" --text="probe again..." --timeout 1
+		;;
+		esac
+	done
+}
+page_probe
+# do login...
+
+xdotool search --sync --onlyvisible --name "$SPOT01" windowactivate | logline
+xdotool key --delay $kd Ctrl+f
+xdotool type --delay $kd $mark02
+xdotool key --delay $kd Escape
+shake
+xdotool key --delay $kd Shift+End Ctrl+c
+clip=$( xclip -out -selection clipboard )
+zenity --info --title="clipboard" --text="mark03 $mark03 clip $clip" --timeout $to
+case "$clip" in
+	*$mark03*)
+		echo "Good coordinate position..."
+		zenity --info --title="Good text coordinate position" --text="Text coordinate \"Centre\" position..." --timeout $to
+		xdotool key --delay $kd Shift+Tab Shift+Tab Shift+Tab
+		xdotool type --delay $kd $password
+		xdotool key --delay $kd Shift+Tab
+		xdotool type --delay $kd $login
+	;;
+	*)
+		zenity --warning --title="Wrong position" --text="There is no text mark03 $mark03 position..." --timeout $to
+	;;
+esac
+
+xdotool key --delay $kd Shift+Home Ctrl+c
+clip=$( xclip -out -selection clipboard )
+zenity --info --title="clipboard" --text="login $login clip $clip" --timeout $to
+case "$clip" in
+  $login)
+	echo "Login position OK..."
+	zenity --info --title="Login position OK" --text="Login $login position OK, Ready... steady... go..." --timeout $to
+  ;;
+  *)
+	zenity --warning --title="Wrong position" --text="There is no login position?..." --timeout $to
+  ;;
+esac
+

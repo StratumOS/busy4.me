@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+PROJECT="busy4me"
+rm -R /opt/$PROJECT
+mkdir /opt/$PROJECT
+cd /opt/$PROJECT
+rm ./busy4me-init* && rm ./init*
+echo "wget -q --no-check-certificate https://busy4.me/opt/busy4me/*"
+
+wget --no-check-certificate https://busy4.me/opt/busy4me/*
+chmod -R +x /opt/busy4me/*

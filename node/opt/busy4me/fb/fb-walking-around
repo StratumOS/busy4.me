@@ -1,0 +1,45 @@
+#!/bin/sh
+BR01="google-chrome" # Browser 01
+PROC01="chrome"
+SPOT01="facebook"
+SPOT01url="http://facebook.com"
+
+# mouse walking around... with visual efect
+# from A to B
+
+A_x=27
+A_y=53
+xdotool mousemove --sync --clearmodifiers $A_x $A_y
+sleep 3
+
+B_x=573
+B_y=17
+xdotool mousemove --sync --clearmodifiers $B_x $B_y
+sleep 3
+
+
+xdotool mousemove --sync --clearmodifiers 754 22
+sleep 3
+
+xdotool search --sync --onlyvisible --class "$PROC01" windowactivate
+xdotool key --delay 200 Ctrl+l
+xdotool type fb.com/DariuszMarek1000000
+xdotool key --delay 200 Return
+sleep 5
+
+xdotool search --sync --onlyvisible --class "$PROC01" windowactivate
+xdotool key --delay 200 Ctrl+l
+xdotool type fb.com/DariuszMarek1000000/allactivity
+xdotool key --delay 200 Return
+sleep 5
+
+xdotool search --sync --onlyvisible --class "$PROC01" windowactivate
+xdotool key --delay 200 Ctrl+f
+xdotool type commented
+xdotool key --delay 200 Escape
+xdotool keydown Shift key Right Right Right keyup Shift
+sleep 1
+xdotool key --delay 100 Tab  key Tab Tab Tab
+xdotool key --delay 100 Up Up Up Up Up Up Up Up Up Down Down Down Down Down Down Down Down Down 
+
+

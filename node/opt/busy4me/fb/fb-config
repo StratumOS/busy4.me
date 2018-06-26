@@ -1,0 +1,7 @@
+#!/bin/sh
+# fb config file
+LOGFILE=/var/log/busy4me.log
+BR01="google-chrome" # Browser 01
+PROC01="chrome" # process 01
+SPOT01="facebook" # spot 01
+SPOT01url="http://facebook.com" # url 01

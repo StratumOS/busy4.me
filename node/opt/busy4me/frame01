@@ -1,0 +1,46 @@
+#!/bin/bash
+# Framework 01....
+
+SCRIPT=frame01
+LOGFILE=/var/log/busy4me.log
+
+if [ $USER = "root" ]
+	then
+	echo "Do not run as root! exit..."
+	exit
+fi
+
+if [ -f /opt/busy4me/config ];then
+    . /opt/busy4me/config
+	else
+	echo "There is no config file!... stop." | logline
+		exit 0
+fi
+
+logline() {
+    while IFS= read -r line; do
+echo "$(date +%F' '%T) $USER $SCRIPT - $line" | tee -a $LOGFILE
+    done
+}
+
+# move mouse away...
+echo "move mouse away...." | logline
+xdotool mousemove 0 0
+# update date before login....
+echo "update date before login...." | logline
+ntpdate -s time.nist.gov | logline
+
+echo "Start $SCRIPT..." | logline
+echo "Start /opt/busy4me/windows-init..." | logline
+/bin/bash /opt/busy4me/windows-init
+
+echo "Start /opt/busy4me/fb/fb-init..." | logline
+/bin/bash /opt/busy4me/fb/fb-init
+
+echo "Start /opt/busy4me/fb/fb-login..." | logline
+/bin/bash /opt/busy4me/fb/fb-login02
+
+echo "Start /opt/busy4me/fb/fb-scroll..." | logline
+#/bin/bash /opt/busy4me/fb/fb-scroll
+
+echo "Stop $SCRIPT..." | logline
