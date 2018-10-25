@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
+# change hostname to machine UUID
+
 hostname=node
+hostname=$(cat /sys/class/dmi/id/product_uuid)
+
 hostnamectl set-hostname "$hostname"
