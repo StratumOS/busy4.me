@@ -4,7 +4,7 @@ Kiosk mode Virtual Machine based on Linux Operating System
 1. Install minimal clean Debian 8 (Jessie) (without ane services, just base system)
 2. Download and execute script in fresh console [as root] :
 
-```
+```Shell
 wget busy4.me/init-0
 chmod 755 ./init-0
 ./init-0
