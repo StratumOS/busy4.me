@@ -29,6 +29,9 @@ export DISPLAY=:0 && xrandr --addmode default 1440x900_59.90
 
 # activate new mode
 export DISPLAY=:0 && xrandr --output VGA --mode 1440x900_59.90
+export DISPLAY=:0 && xrandr --output Virtual1 --mode 1440x900_59.90
+export DISPLAY=:0 && xrandr --output default --mode 1440x900_59.90
+
 
 export DISPLAY=:0 && xrandr --newmode "1440x900_60.00"  106.50  1440 1528 1672 1904  900 903 909 934 -hsync +vsync
 export DISPLAY=:0 && xrandr --addmode Virtual1 1440x900_60.00
