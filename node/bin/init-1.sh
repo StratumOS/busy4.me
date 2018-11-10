@@ -1,4 +1,4 @@
-	#!/bin/bash
+#!/bin/bash
 # Setup busy4.me in user "busyman" home directory
 # Install dependencies
 # X (the display server)
