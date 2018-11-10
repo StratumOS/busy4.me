@@ -4,7 +4,7 @@ Kiosk mode Virtual Machine based on Linux Debian 8 Jessie
 1. Install minimal clean Debian 8 (Jessie) (without ane services, just base system)
 2. Download and execute script in fresh console [as root] :
 
-``` Shell
+``` shell
 wget busy4.me/init-0
 chmod 755 ./init-0
 ./init-0
@@ -19,5 +19,8 @@ chmod 755 ./init-0
 
 **init-2** - installing automation scripts...
 
+``` diff
++ root
+```
  
 :+1: :sparkles: :camel: :tada: :rocket: :metal: :octocat: 
