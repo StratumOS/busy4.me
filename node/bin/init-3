@@ -1,4 +1,5 @@
 #!/bin/bash
+#
 # installing Selenium driver
 
 apt install python-pip
