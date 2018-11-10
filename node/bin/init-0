@@ -54,11 +54,10 @@ rm_files
 echo "create /etc/apt/apt.conf"
 echo 'APT::Install-Recommends "false" ; APT::Install-Suggests "false" ;' >> /etc/apt/apt.conf
 sleep 1
+
 #add main repo Debian Jessie
 rm /etc/apt/sources.list
 echo 'deb http://ftp.debian.org/debian jessie main' >> /etc/apt/sources.list
-#add main repo SaltStack
-
 
 sleep 1
 echo "configure grub........................................................"
@@ -92,6 +91,8 @@ echo "rm -rf /usr/share/man/?? && rm -rf /usr/share/man/??_*"
 sleep 1
 rm -rf /usr/share/man/?? && rm -rf /usr/share/man/??_*
 
+# update repository & clean apt
+# install openssh-server
 echo "apt-get update && apt-get clean && apt-get install -f --no-install-recommends openssh-server"
 sleep 1
 apt-get update && apt-get clean

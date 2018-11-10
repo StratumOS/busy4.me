@@ -39,6 +39,7 @@ rm /root/init-0 >> $LOGFILE
 lsb_release -a | logline
 uname -a | logline
 
+# install X, browser, and other packages
 # apt-get update && apt-get install -y software-properties-common python-software-properties
 apt-get install -y software-properties-common | logline # for Debian
 apt-get install -y wget curl | logline
@@ -48,6 +49,17 @@ apt-get update | logline >> $LOGFILE
 apt-get install -y --no-install-recommends xorg | logline >> $LOGFILE # without lightdm for now
 apt-get install -y --no-install-recommends openbox google-chrome-stable | logline
 apt-get install -y xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate | logline >> $LOGFILE
+
+#add main repo & install SaltStack
+rm /etc/apt/sources.list.d/saltstack.list
+echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main' >> /etc/apt/sources.list.d/saltstack.list 
+wget -O - https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+apt-get update
+apt-get install salt-minion
+rm /etc/salt/minion
+cat > /etc/salt/minion  << EOF
+master: api_server_001.busy4.me
+EOF
 
 echo 'Download local webservice menu file.....................' >> $LOGFILE
 wget -nv --no-check-certificate https://busy4.me/var/www/html/index.html -O /var/www/html/index.html | logline
