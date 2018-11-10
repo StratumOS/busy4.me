@@ -20,7 +20,7 @@ chmod 755 ./init-0
 **init-2** - installing automation scripts...
 
 ``` diff
-+ root
+- root
 ```
  
 :+1: :sparkles: :camel: :tada: :rocket: :metal: :octocat: 
