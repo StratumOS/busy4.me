@@ -1,5 +1,5 @@
 # busy4.me
-Kiosk mode Virtual Machine based on Linux Debian 8 Jessie
+<i>Kiosk mode Virtual Machine based on Linux Debian 8 Jessie</i>
 
 1. Install minimal clean Debian 8 (Jessie) (without ane services, just base system)
 2. Download and execute script in fresh console [as root] :
