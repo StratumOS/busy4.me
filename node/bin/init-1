@@ -58,7 +58,7 @@ apt-get update
 apt-get install salt-minion
 rm /etc/salt/minion
 cat > /etc/salt/minion  << EOF
-master: api_server_001.busy4.me
+master: 192.168.121.39
 EOF
 
 echo 'Download local webservice menu file.....................' >> $LOGFILE
