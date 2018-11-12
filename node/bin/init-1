@@ -71,7 +71,7 @@ echo 'Change autostart startx in user busyman .profile file.....................
 #sed -i 's/date/startx/g' /home/busyman/.profile | logline
 
 rm /home/$BUSYUSER/.profile
-cat > /home/$BUSYUSER/.profile  << EOF
+cat > /home/$BUSYUSER/.profile  << 'EOF'
 [[ $(tty) = /dev/tty1 ]] && setterm -blank 0 -powersave off && startx
 EOF
 chown $BUSYUSER:$BUSYUSER /home/busyman/.profile | logline
