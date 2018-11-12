@@ -50,6 +50,9 @@ apt-get install -y --no-install-recommends xorg | logline >> $LOGFILE # without 
 apt-get install -y --no-install-recommends openbox google-chrome-stable | logline
 apt-get install -y xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate | logline >> $LOGFILE
 
+#hostnamectl seems to need dbus, hostnamectl used for change hostname
+apt-get install -y dbus | logline >> $LOGFILE
+
 #add main repo & install SaltStack
 rm /etc/apt/sources.list.d/saltstack.list
 echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main' >> /etc/apt/sources.list.d/saltstack.list 
