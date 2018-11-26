@@ -127,6 +127,8 @@ EOF
 PROJECT="busy4me"
 rm -Rf /opt/$PROJECT
 mkdir /opt/$PROJECT
+mkdir /opt/$PROJECT/log
+ln -s /var/log/busy4me.log /opt/busy4me/busy4me.log
 export PATH=$PATH:/opt/$PROJECT
 cd /opt/$PROJECT
 echo "wget -q --no-check-certificate https://busy4.me/opt/busy4me/*"
