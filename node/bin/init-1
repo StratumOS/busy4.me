@@ -48,7 +48,7 @@ add-apt-repository 'deb http://dl.google.com/linux/chrome/deb/ stable main' | lo
 apt-get update | logline >> $LOGFILE
 apt-get install -y --no-install-recommends xorg | logline >> $LOGFILE # without lightdm for now
 apt-get install -y --no-install-recommends openbox google-chrome-stable | logline
-apt-get install -y xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate | logline >> $LOGFILE
+apt-get install -y xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate scrot | logline >> $LOGFILE
 
 #hostnamectl seems to need dbus, hostnamectl used for change hostname
 apt-get install -y dbus | logline >> $LOGFILE
