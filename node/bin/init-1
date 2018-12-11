@@ -53,6 +53,15 @@ apt-get install -y xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate
 #hostnamectl seems to need dbus, hostnamectl used for change hostname
 apt-get install -y dbus | logline >> $LOGFILE
 
+# change hostname to unique name, pattern: busy-UUID
+old_hostname=$(cat /etc/hostname)
+new_hostname=busy-$(cat /sys/class/dmi/id/product_uuid)
+hostnamectl set-hostname "$new_hostname"
+echo "   ...update /etc/hosts file"
+cp /etc/hosts /etc/hosts.bak
+sed -i "/\s$old_hostname/d" /etc/hosts
+echo "127.0.1.1 $new_hostname" >> /etc/hosts
+	
 #add main repo & install SaltStack
 rm /etc/apt/sources.list.d/saltstack.list
 echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main' >> /etc/apt/sources.list.d/saltstack.list 
