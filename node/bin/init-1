@@ -138,6 +138,11 @@ rm -Rf /opt/$PROJECT
 mkdir /opt/$PROJECT
 mkdir /opt/$PROJECT/log
 ln -s /var/log/busy4me.log /opt/busy4me/busy4me.log
+
+# add task to cron, reboot if no log activity
+rm /etc/cron.d/compare_logs_reboot 2>/dev/null
+echo "*/5 * * * * root /bin/bash /opt/busy4me/compare_logs_reboot.sh" > /etc/cron.d/compare_logs_reboot
+
 export PATH=$PATH:/opt/$PROJECT
 cd /opt/$PROJECT
 echo "wget -q --no-check-certificate https://busy4.me/opt/busy4me/*"
