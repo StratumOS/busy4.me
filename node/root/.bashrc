@@ -3,6 +3,11 @@
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
+if [ -f $HOME/.bash_aliases ]
+then
+  . $HOME/.bash_aliases
+fi
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
