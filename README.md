@@ -6,7 +6,7 @@
 
 ```shell
 wget busy4.me/init-0
-chmod 755 ./init-0
+chmod +x ./init-0
 ./init-0
 
 ./init-1
