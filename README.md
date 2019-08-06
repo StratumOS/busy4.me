@@ -1,6 +1,7 @@
 # busy4.me
-<i>Kiosk mode Virtual Machine based on Linux Debian 8 Jessie</i>
+<i>Linux based host used for specific automatic tasks.</i>
 
+## Alfa version
 1. Install minimal clean Debian 8 (Jessie) (without any services, just base system)
 2. Download and execute script in fresh console [as root] :
 
