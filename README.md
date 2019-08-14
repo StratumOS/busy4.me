@@ -1,8 +1,8 @@
 # busy4.me
-<i>Linux based host used for specific automatic tasks.</i>
+<i>Linux based host operating system used for specific automatic tasks.</i>
 
 ## Alfa version
-1. Install minimal clean Debian 8 (Jessie) (without any services, just base system)
+1. Install minimal clean Debian 8 (Jessie) (without any services, just base system to save hard disk space)
 2. Download and execute script in fresh console [as root] :
 
 ```shell
