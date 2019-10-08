@@ -1,5 +1,5 @@
 # busy4.me
-<i>Linux based host operating system used for specific automatic tasks.</i>
+<i> based on Stratum OS used for Social Media automatic tasks.</i>
 
 ## Alfa version
 1. Install minimal clean Debian 8 (Jessie) (without any services, just base system to save hard disk space)
