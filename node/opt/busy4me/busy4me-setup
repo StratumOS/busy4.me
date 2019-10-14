@@ -93,13 +93,5 @@ systemctl daemon-reload
 systemctl daemon-reexec
 pm2 show
 
-
-
-
 # install miniupnpc (command:  apt install upnpc) to open extended port on UPNP routers
 apt-get install miniupnpc
-
-
-
-
-
