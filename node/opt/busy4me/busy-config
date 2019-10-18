@@ -1,5 +1,6 @@
 #!/bin/bash
 # global functions used in every sripts
+# edite by Octophus
 
 # XAUTHORITY needs for root
 XAUTHORITY="/home/busyman/.Xauthority"
@@ -19,4 +20,3 @@ logline_cron() {
 	echo "$(date +%F' '%T) $USER $SCRIPT - $line" | tee -a $LOGFILE_CRON
 	done
 }
-
