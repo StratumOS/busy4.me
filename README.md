@@ -20,7 +20,7 @@ chmod +x ./init-0
 
 **init-0** - clean and adjust, install openssh-server, add 'busyman' user & set autologin
 
-**init-1** - install X server, Openbox, Chrome browser, xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate
+**init-1** - install X server, Openbox, Chrome browser, xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate and more... 
 
 **init-2** - install automation scripts...
 
