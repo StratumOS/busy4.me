@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo -e "\e[42m type your comment ...\e[0m"
+read comment
+
 git add .
-git commit -m ""
+git commit -m "$comment"
 git push
