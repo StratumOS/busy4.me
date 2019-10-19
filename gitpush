@@ -1,5 +1,4 @@
 #!/bin/bash
-
 echo -e "\e[42m type your comment ...\e[0m"
 read comment
 
