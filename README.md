@@ -1,7 +1,7 @@
 # busy4.me
-<i> based on Stratum OS used for Social Media automatic tasks.</i>
+<i> "Genius Assistant" based on Stratum OS used for Social Media automatic tasks</i>
 
-## Alfa version
+## Alfa version (under development)
 1. Install minimal clean Debian 8 (Jessie) (without any services, just base system to save hard disk space)
 2. Download and execute script in fresh console [as root] :
 
@@ -18,14 +18,15 @@ chmod +x ./init-0
 ./init-0
 ```
 
-**init-0** - cleaning and adjusting, install openssh-server, adding 'busyman' user & setting autologin
+**init-0** - clean and adjust, install openssh-server, add 'busyman' user & set autologin
 
-**init-1** - installing X server, Openbox, Chrome browser, xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate
+**init-1** - install X server, Openbox, Chrome browser, xdotool wmctrl xcompmgr feh nginx bc ntp zenity xclip ntpdate
 
-**init-2** - installing automation scripts...
+**init-2** - install automation scripts...
 
+**init-3** - install binary files...
 ``` diff
 - root
 ```
- 
-:+1: :sparkles: :camel: :tada: :rocket: :metal: :octocat: 
+
+:+1: :sparkles: :camel: :tada: :rocket: :metal: :octocat:
