@@ -3,7 +3,6 @@
 # author: Visaroy
 
 repo=echo ${PWD/*\//}
-
 echo -e "\e[32mCurrent PROJECT repo:\e[33m $repo \e[42m changes: \e[0m"
 git status
 echo -e "\e[42m type your comment ...\e[0m"
@@ -14,4 +13,4 @@ git commit -m "$comment"
 git remote rm upstream
 git remote add upstream git@github.com:system66/busy4.me
 
-git push
+git push -u upstream master
