@@ -3,9 +3,9 @@
 # author: Visaroy
 
 repo=echo ${PWD/*\//}
-echo -e "\e[32mCurrent PROJECT repo:\e[33m $repo \e[42m changes: \e[0m"
+echo -e "\e[32mCurrent PROJECT repo:\e[33m" $repo "\e[32m changes: \e[0m"
 git status
-echo -e "\e[42m type your comment ...\e[0m"
+echo -e "\e[95m type your comment below...\e[0m"
 read comment
 
 git add .
