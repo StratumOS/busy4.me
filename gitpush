@@ -2,13 +2,6 @@
 # one line quick commit, comment and push to github
 # author: Dariusz Porczyński
 
-#rm /tmp/gitconfig
-#cat ./.git/config
-#cat ./.git/config > /tmp/gitconfig
-#sed 's/^.*github/github/' /tmp/gitconfig
-#echo -e "\e[33m-----------------------\e[0m"
-#cat /tmp/gitconfig
-
 gu=$(echo $(cat ./.git/config) | sed 's/^.*github.com\///' | sed 's/\/.*//')
 echo -e "\e[95m Press ENTER if username is correct or type correct one\n\
 Current username: \e[33m"$gu"\e[0m"
@@ -34,9 +27,10 @@ git add .
 
 repo=$(echo ${PWD/*\//})
 branch=master
-echo -e "\e[95mCurrent repository:\e[0m"$repo"\e[95m, branch:\e[0m"$branch"\e[95m, changes... \e[0m"
+echo -e "\e[95mCurrent repository:\e[0m"$repo"\e[95m, branch:\e[0m"$branch"\e[95m, \
+see changes below ... \e[0m"
 git status
-echo -e "\e[95m type your comment below...\e[0m"
+echo -e "\e[95m and type your comment below ...\e[0m"
 read comment
 
 git commit -m "$comment"
