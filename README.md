@@ -6,7 +6,7 @@
 2. Download and execute script in fresh console [as root] :
 
 ```shell
-git clone https://github.com/system66/busy4.me
+git clone https://github.com/StratumOS/busy4.me
 cd busy4.me
 ./install.sh
 ```
